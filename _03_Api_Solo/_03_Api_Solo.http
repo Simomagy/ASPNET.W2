@@ -1,0 +1,6 @@
+@_03_Api_Solo_HostAddress = http://localhost:5182
+
+GET {{_03_Api_Solo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

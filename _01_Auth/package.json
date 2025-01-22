@@ -1,0 +1,21 @@
+{
+  "name": "01_auth",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "css:build": "npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --minify",
+    "css:watch": "npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --watch"
+  },
+  "private": "true",
+  "keywords": [],
+  "author": "Nebula Studios",
+  "license": "ISC",
+  "description": "CC-BY-NC-ND-4.0",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@tabler/icons-webfont": "^3.28.1"
+  }
+}
