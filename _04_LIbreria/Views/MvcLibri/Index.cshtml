@@ -2,36 +2,63 @@
 
 @{
     Layout = "_Layout";
+    ViewData["Title"] = "Libreria";
 }
 
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
-    <title>title</title>
+    <title>@ViewData["Title"] - Libreria</title>
 </head>
 <body>
-<div>
-    <a href="@Url.Action("AddForm", "MvcLibri")">Aggiungi Libro</a>
-    @if (Model != null && Model.Any())
-    {
-        foreach (var libro in Model)
-        {
-            <div class="mb-4">
-                <h2>@libro.Titolo</h2>
-                <p>@libro.Autore</p>
-                <p>@libro.Genere</p>
-                <p>@libro.Prezzo</p>
-                <a href="@Url.Action("Details", "MvcLibri", new { id = libro.Id })">Dettagli</a>
-                <a href="@Url.Action("EditForm", "MvcLibri", new { id = libro.Id })">Modifica</a>
-                <a href="@Url.Action("Delete", "MvcLibri", new { id = libro.Id })">Elimina</a>
+
+    <div class="relative isolate px-6 pt-14 lg:px-8 h-screen">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-orange-600 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="mx-auto max-w-7xl py-16">
+        <div class="text-center mb-4 p-10">
+            <h1 class="text-balance text-5xl font-semibold tracking-tight text-foreground-50 sm:text-7xl">I nostri <span class="text-orange-600 font-bold">migliori</span> libri</h1>
+        </div>
+        <div class="grid grid-cols-3 gap-3 overflow-y-scroll">
+            @if (Model.Any())
+            {
+                foreach (var libro in @Model)
+                {
+                    <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow dark:bg-zinc-900/40 dark:border-gray-700">
+                        <div class="flex flex-col items-center p-10">
+                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">@libro.Titolo</h5>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">@libro.Autore • @libro.Genere</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">@libro.Prezzo</span>
+                            <div class="flex mt-4 md:mt-6">
+                                <a href="@Url.Action("Details", "MvcLibri", new { id = libro.Id })" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-zinc-950 bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Dettagli</a>
+                                <a href="@Url.Action("EditForm", "MvcLibri", new { id = libro.Id })" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Modifica</a>
+                                <a href="@Url.Action("Delete", "MvcLibri", new { id = libro.Id })" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Elimina</a>
+                                </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow dark:bg-zinc-900/40 dark:border-gray-700">
+                    <div class="flex flex-col items-center pb-10">
+                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Nessun libro presente</h5>
+                    </div>
+                </div>
+            }
+            <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow hover:bg-zinc-900/60 transition-all dark:bg-zinc-900/40 dark:border-gray-700">
+                <a href="@Url.Action("AddForm", "MvcLibri")" class="w-full h-full flex justify-center items-center">
+                    <i class="ti ti-plus text-[10rem] text-gray-500 dark:text-gray-400"></i>
+                </a>
             </div>
-        }
-    }
-    else
-    {
-        <p>Nessun libro trovato</p>
-    }
+        </div>
+    </div>
+    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-orange-600 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
 </div>
+
 </body>
 </html>

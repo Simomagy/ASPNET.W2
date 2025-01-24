@@ -20,7 +20,7 @@ public class LibriService : ILibriService
     public List<Libro> GetRecords()
     {
         // Step 1: Chiedo i dati all'API tramite la chiamata corretta
-        var response = _client.GetAsync("https://localhost:7135/api/Libri/GetAll").Result;
+        var response = _client.GetAsync("http://localhost:5121/api/Libri/GetAll").Result;
         // Step 2: Verifico che la chiamata sia andata a buon fine code 200
         response.EnsureSuccessStatusCode();
         // Step 3: Trasformo il JSON in una stringa
@@ -36,7 +36,7 @@ public class LibriService : ILibriService
 
     public Libro? FindRecord(int id)
     {
-        var response = _client.GetAsync($"https://localhost:7135/api/Libri/{id}").Result;
+        var response = _client.GetAsync($"http://localhost:5121/api/Libri/{id}").Result;
         if (!response.IsSuccessStatusCode)
             return null;
         var jsonResponse = response.Content.ReadAsStringAsync().Result;
@@ -45,7 +45,7 @@ public class LibriService : ILibriService
 
     public bool DeleteRecord(int id)
     {
-        var response = _client.DeleteAsync($"https://localhost:7135/api/Libri/delete/{id}").Result;
+        var response = _client.DeleteAsync($"http://localhost:5121/api/Libri/delete/{id}").Result;
         response.EnsureSuccessStatusCode();
         return response.IsSuccessStatusCode;
     }
@@ -54,7 +54,7 @@ public class LibriService : ILibriService
     {
         var json = JsonSerializer.Serialize(libro);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = _client.PutAsync($"https://localhost:7135/api/Libri/update/{id}", content).Result;
+        var response = _client.PutAsync($"http://localhost:5121/api/Libri/update/{id}", content).Result;
         response.EnsureSuccessStatusCode();
         return response.IsSuccessStatusCode;
     }
@@ -63,7 +63,7 @@ public class LibriService : ILibriService
     {
         var json = JsonSerializer.Serialize(libro);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = _client.PostAsync("https://localhost:7135/api/Libri/add", content).Result;
+        var response = _client.PostAsync("http://localhost:5121/api/Libri/add", content).Result;
         response.EnsureSuccessStatusCode();
         return response.IsSuccessStatusCode;
     }
