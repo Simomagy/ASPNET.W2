@@ -1,0 +1,29 @@
+﻿@model Libro
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+    var libro = Model;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+<form asp-action="Edit" method="post">
+    <div class="mb-4">
+        <input type="text" name="titolo" class="form-control" value="@libro.Titolo"/>
+        <input type="text" name="autore" class="form-control" value="@libro.Autore"/>
+        <input type="text" name="genere" class="form-control" value="@libro.Genere"/>
+        <input type="number" name="prezzo" class="form-control" step="any" value="@libro.Prezzo"/>
+        <input type="hidden" readonly name="id" value="@libro.Id"/>
+        <button type="submit" class="btn btn-primary">Salva</button>
+    </div>
+</form>
+</div>
+</body>
+</html>

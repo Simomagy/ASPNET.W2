@@ -1,0 +1,25 @@
+﻿@model Libro
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+    var libro = Model;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <div class="mb-4">
+        <h2>@libro.Titolo</h2>
+        <p>@libro.Autore</p>
+        <p>@libro.Genere</p>
+        <p>@libro.Prezzo</p>
+    </div>
+</div>
+</body>
+</html>
